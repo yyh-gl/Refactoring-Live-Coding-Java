@@ -14,26 +14,18 @@ class GildedRose {
     }
 
     public void updateItem(Item item) {
+        GildedRoseItemInterface gildedRoseItem;
         if (isSulfuras(item)) {
-            GildedRoseItemInterface sulfurasItem = new SulfurasItem();
-            sulfurasItem.updateSellIn(item);
-            sulfurasItem.updateQuality(item);
-            return;
-        }
-
-        if (isAgedBrie(item)) {
-            GildedRoseItemInterface agedBrieItem = new AgedBrieItem();
-            agedBrieItem.updateSellIn(item);
-            agedBrieItem.updateQuality(item);
+            gildedRoseItem = new SulfurasItem();
+        } else if (isAgedBrie(item)) {
+            gildedRoseItem = new AgedBrieItem();
         } else if (isBackstagePasses(item)) {
-            GildedRoseItemInterface backstagePassesItem = new BackstagePassesItem();
-            backstagePassesItem.updateSellIn(item);
-            backstagePassesItem.updateQuality(item);
+            gildedRoseItem = new BackstagePassesItem();
         } else {
-            GildedRoseItemInterface normalItem = new NormalItem();
-            normalItem.updateSellIn(item);
-            normalItem.updateQuality(item);
+            gildedRoseItem = new NormalItem();
         }
+        gildedRoseItem.updateSellIn(item);
+        gildedRoseItem.updateQuality(item);
     }
 
     private boolean isSulfuras(Item item) {
