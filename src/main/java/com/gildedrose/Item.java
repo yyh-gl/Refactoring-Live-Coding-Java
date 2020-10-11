@@ -14,32 +14,32 @@ public class Item {
         this.quality = quality;
     }
 
-   @Override
-   public String toString() {
+    @Override
+    public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
     }
 
-   void decreaseSellIn() {
-       sellIn = sellIn - 1;
-   }
+    void decreaseSellIn() {
+        sellIn = sellIn - 1;
+    }
     
-   void decreaseQuality() {
-      quality = quality - 1;
-   }
+    void decreaseQuality() {
+       quality = quality - 1;
+    }
 
-   void increaseQuality() {
-       quality = quality + 1;
-   }
+    void increaseQuality() {
+        quality = quality + 1;
+    }
 
-   boolean lessThanMaxQuality() {
-       return quality < 50; 
-   }
+    boolean lessThanMaxQuality() {
+        return quality < 50; 
+    }
 
-   boolean moreThanMinQuality() {
-       return quality > 0;
-   }
+    boolean moreThanMinQuality() {
+        return quality > 0;
+    }
 
-   boolean isEndOfSales() {
-       return sellIn < 0;
-   }
+    boolean isEndOfSales() {
+        return sellIn < 0;
+    }
 }
