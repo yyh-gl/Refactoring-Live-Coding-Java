@@ -18,15 +18,16 @@ class GildedRose {
             return;
         }
 
-        decreaseSellIn(item); // SellIn値の変更はここだけ
-
-        // ここ以降はQuality値の変更だけ
-
         if (isAgedBrie(item)) {
+            // decreaseSellIn()をあえて各商品種類ごとの処理の中に書く
+            // → 各商品ごとのふるまいを揃えることでインタフェースを考えやすくする
+            decreaseSellIn(item);
             updateAgedBrieQuality(item);
         } else if (isBackstagePasses(item)) {
+            decreaseSellIn(item);
             updateBackstagePassesQuality(item);
         } else {
+            decreaseSellIn(item);
             updateNormalQuality(item);
         }
     }
