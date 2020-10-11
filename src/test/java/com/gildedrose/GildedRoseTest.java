@@ -33,10 +33,26 @@ class GildedRoseTest {
         }
 
         @Test
-        void _更新するとquality値の更新が1減る() {
+        void _更新するとquality値が1減る() {
             GildedRose app = new GildedRose(items);
             app.updateQuality();
             assertEquals(29, app.items[0].quality);
+        }
+
+        @Test
+        void _SellIn値が1の場合更新するとquality値が1減る() {
+            items = new Item[] { new Item("foo", 1, 30) };
+            GildedRose app = new GildedRose(items);
+            app.updateQuality();
+            assertEquals(29, app.items[0].quality);
+        }
+
+        @Test
+        void _SellIn値が0の場合更新するとquality値が2減る() {
+            items = new Item[] { new Item("foo", 0, 30) };
+            GildedRose app = new GildedRose(items);
+            app.updateQuality();
+            assertEquals(28, app.items[0].quality);
         }
     }
     
@@ -98,7 +114,7 @@ class GildedRoseTest {
         }
 
         @Test
-        void _Item名がAgedBrieでQuality値が49の場合更新してもQuality値が1増える() {
+        void _Item名がAgedBrieでQuality値が49の場合更新するとQuality値が1増える() {
             items = new Item[] { new Item("Aged Brie", 20, 49) };
             GildedRose app = new GildedRose(items);
             app.updateQuality();
@@ -111,6 +127,22 @@ class GildedRoseTest {
             GildedRose app = new GildedRose(items);
             app.updateQuality();
             assertEquals(50, app.items[0].quality);
+        }
+
+        @Test
+        void _Item名がAgedBrieでSellIn値が0の場合更新するとQuality値は2増える() {
+            items = new Item[] { new Item("Aged Brie", 0, 30) };
+            GildedRose app = new GildedRose(items);
+            app.updateQuality();
+            assertEquals(32, app.items[0].quality);
+        }
+
+        @Test
+        void _Item名がAgedBrieでSellIn値が1の場合更新するとQuality値は1増える() {
+            items = new Item[] { new Item("Aged Brie", 1, 30) };
+            GildedRose app = new GildedRose(items);
+            app.updateQuality();
+            assertEquals(31, app.items[0].quality);
         }
     }
 
@@ -129,21 +161,21 @@ class GildedRoseTest {
         }
 
         @Test
-        void _Item名がBackstagePassesの場合更新してもSellIn値が1減る() {
+        void _Item名がBackstagePassesの場合更新するとSellIn値が1減る() {
             GildedRose app = new GildedRose(items);
             app.updateQuality();
             assertEquals(19, app.items[0].sellIn);
         }
 
         @Test
-        void _Item名がBackstagePassesの場合更新してもQuality値が1増える() {
+        void _Item名がBackstagePassesの場合更新するとQuality値が1増える() {
             GildedRose app = new GildedRose(items);
             app.updateQuality();
             assertEquals(31, app.items[0].quality);
         }
 
         @Test
-        void _Item名がBackstagePassesでQuality値が49の場合更新してもQuality値が1増える() {
+        void _Item名がBackstagePassesでQuality値が49の場合更新するとQuality値が1増える() {
             items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 20, 49) };
             GildedRose app = new GildedRose(items);
             app.updateQuality();
@@ -159,7 +191,7 @@ class GildedRoseTest {
         }
 
         @Test
-        void _Item名がBackstagePassesでSellIn値が11の場合更新してもQuality値は1増える() {
+        void _Item名がBackstagePassesでSellIn値が11の場合更新するとQuality値は1増える() {
             items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 11, 30) };
             GildedRose app = new GildedRose(items);
             app.updateQuality();
@@ -167,7 +199,7 @@ class GildedRoseTest {
         }
 
         @Test
-        void _Item名がBackstagePassesでSellIn値が10の場合更新してもQuality値は2増える() {
+        void _Item名がBackstagePassesでSellIn値が10の場合更新するとQuality値は2増える() {
             items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 10, 30) };
             GildedRose app = new GildedRose(items);
             app.updateQuality();
@@ -175,7 +207,7 @@ class GildedRoseTest {
         }
 
         @Test
-        void _Item名がBackstagePassesでSellIn値が6の場合更新してもQuality値は2増える() {
+        void _Item名がBackstagePassesでSellIn値が6の場合更新するとQuality値は2増える() {
             items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 6, 30) };
             GildedRose app = new GildedRose(items);
             app.updateQuality();
@@ -183,11 +215,19 @@ class GildedRoseTest {
         }
 
         @Test
-        void _Item名がBackstagePassesでSellIn値が5の場合更新してもQuality値は3増える() {
-            items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 5, 30) };
+        void _Item名がBackstagePassesでSellIn値が1の場合更新するとQuality値は3増える() {
+            items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 1, 30) };
             GildedRose app = new GildedRose(items);
             app.updateQuality();
             assertEquals(33, app.items[0].quality);
+        }
+
+        @Test
+        void _Item名がBackstagePassesでSellIn値が0の場合更新するとQuality値が0になる() {
+            items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 0, 30) };
+            GildedRose app = new GildedRose(items);
+            app.updateQuality();
+            assertEquals(0, app.items[0].quality);
         }
     }
 
