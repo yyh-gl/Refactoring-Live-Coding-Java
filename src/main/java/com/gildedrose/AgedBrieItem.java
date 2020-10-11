@@ -3,22 +3,18 @@ package com.gildedrose;
 public class AgedBrieItem implements GildedRoseItemInterface {
     @Override
     public void updateSellIn(Item item) {
-        item.sellIn = item.sellIn - 1;
+        item.decreaseSellIn();
     }
 
     @Override
     public void updateQuality(Item item) {
-        if (item.quality < 50) {
-            incrementQuality(item);
+        if (item.lessThanMaxQuality()) {
+            item.increaseQuality();
         }
-        if (item.sellIn < 0) {
-            if (item.quality < 50) {
-                incrementQuality(item);
+        if (item.isEndOfSales()) {
+            if (item.lessThanMaxQuality()) {
+                item.increaseQuality();
             }
         }
-    }
-
-    private void incrementQuality(Item item) {
-        item.quality = item.quality + 1;
     }
 }

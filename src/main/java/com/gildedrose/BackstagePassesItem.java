@@ -3,33 +3,31 @@ package com.gildedrose;
 public class BackstagePassesItem implements GildedRoseItemInterface {
     @Override
     public void updateSellIn(Item item) {
-        item.sellIn = item.sellIn - 1;
+        item.decreaseSellIn();
     }
 
     @Override
     public void updateQuality(Item item) {
-        if (item.quality < 50) {
-            incrementQuality(item);
+        if (item.lessThanMaxQuality()) {
+            item.increaseQuality();
 
+            // item.sellIn < 10 はItemクラスで共通化しない
+            // → BackstagePassesItem特有の処理であるため
             if (item.sellIn < 10) {
-                if (item.quality < 50) {
-                    incrementQuality(item);
+                if (item.lessThanMaxQuality()) {
+                    item.increaseQuality();
                 }
             }
 
             if (item.sellIn < 5) {
-                if (item.quality < 50) {
-                    incrementQuality(item);
+                if (item.lessThanMaxQuality()) {
+                    item.increaseQuality();
                 }
             }
 
-            if (item.sellIn < 0) {
+            if (item.isEndOfSales()) {
                 item.quality = 0;
             }
         }
-    }
-
-    private void incrementQuality(Item item) {
-        item.quality = item.quality + 1;
     }
 }
