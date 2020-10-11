@@ -27,29 +27,10 @@ class GildedRose {
             backstagePassesItem.updateSellIn(item);
             backstagePassesItem.updateQuality(item);
         } else {
-            decreaseSellIn(item);
-            updateNormalQuality(item);
+            GildedRoseItem normalItem = new NormalItem();
+            normalItem.updateSellIn(item);
+            normalItem.updateQuality(item);
         }
-    }
-
-    private void updateNormalQuality(Item item) {
-        if (item.quality > 0) {
-            decreaseQuality(item);
-        }
-
-        if (item.sellIn < 0) {
-            if (item.quality > 0) {
-                decreaseQuality(item);
-            }
-        }
-    }
-
-    private void decreaseSellIn(Item item) {
-        item.sellIn = item.sellIn - 1;
-    }
-
-    private void decreaseQuality(Item item) {
-        item.quality = item.quality - 1;
     }
 
     private boolean isSulfuras(Item item) {
