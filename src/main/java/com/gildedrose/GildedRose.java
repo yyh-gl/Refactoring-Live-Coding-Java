@@ -15,19 +15,22 @@ class GildedRose {
 
     public void updateItem(Item item) {
         if (isSulfuras(item)) {
+            GildedRoseItemInterface sulfurasItem = new SulfurasItem();
+            sulfurasItem.updateSellIn(item);
+            sulfurasItem.updateQuality(item);
             return;
         }
 
         if (isAgedBrie(item)) {
-            GildedRoseItem agedBrieItem = new AgedBrieItem();
+            GildedRoseItemInterface agedBrieItem = new AgedBrieItem();
             agedBrieItem.updateSellIn(item);
             agedBrieItem.updateQuality(item);
         } else if (isBackstagePasses(item)) {
-            GildedRoseItem backstagePassesItem = new BackstagePassesItem();
+            GildedRoseItemInterface backstagePassesItem = new BackstagePassesItem();
             backstagePassesItem.updateSellIn(item);
             backstagePassesItem.updateQuality(item);
         } else {
-            GildedRoseItem normalItem = new NormalItem();
+            GildedRoseItemInterface normalItem = new NormalItem();
             normalItem.updateSellIn(item);
             normalItem.updateQuality(item);
         }
