@@ -1,7 +1,8 @@
 
 # TDDBC開催されていたリファクタリングのライブコーディング
 
-[主催者さんのコミット履歴](https://github.com/nihonbuson/GildedRose-Refactoring-Kata/commits/practice_20200810)
+- [お題『emilybache/GildedRose-Refactoring-Kata』](https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/master/GildedRoseRequirements_jp.md)
+- [主催者さんのコミット履歴](https://github.com/nihonbuson/GildedRose-Refactoring-Kata/commits/practice_20200810)
 
 
 ## ブランチ
