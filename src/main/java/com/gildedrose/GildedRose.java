@@ -19,10 +19,9 @@ class GildedRose {
         }
 
         if (isAgedBrie(item)) {
-            // decreaseSellIn()をあえて各商品種類ごとの処理の中に書く
-            // → 各商品ごとのふるまいを揃えることでインタフェースを考えやすくする
-            decreaseSellIn(item);
-            updateAgedBrieQuality(item);
+            GildedRoseItem agedBrieItem = new AgedBrieItem();
+            agedBrieItem.updateSellIn(item);
+            agedBrieItem.updateQuality(item);
         } else if (isBackstagePasses(item)) {
             decreaseSellIn(item);
             updateBackstagePassesQuality(item);
@@ -62,17 +61,6 @@ class GildedRose {
 
             if (item.sellIn < 0) {
                 item.quality = 0;
-            }
-        }
-    }
-
-    private void updateAgedBrieQuality(Item item) {
-        if (item.quality < 50) {
-            incrementQuality(item);
-        }
-        if (item.sellIn < 0) {
-            if (item.quality < 50) {
-                incrementQuality(item);
             }
         }
     }
