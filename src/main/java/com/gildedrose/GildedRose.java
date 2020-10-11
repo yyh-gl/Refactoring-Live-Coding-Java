@@ -23,43 +23,55 @@ class GildedRose {
         // ここ以降はQuality値の変更だけ
 
         if (isAgedBrie(item)) {
-            if (item.quality < 50) {
-                incrementQuality(item);
+            updateAgedBrieQuality(item);
+        } else if (isBackstagePasses(item)) {
+            updateBackstagePassesQuality(item);
+        } else {
+            updateNormalQuality(item);
+        }
+    }
+
+    private void updateNormalQuality(Item item) {
+        if (item.quality > 0) {
+            decreaseQuality(item);
+        }
+
+        if (item.sellIn < 0) {
+            if (item.quality > 0) {
+                decreaseQuality(item);
             }
-            if (item.sellIn < 0) {
+        }
+    }
+
+    private void updateBackstagePassesQuality(Item item) {
+        if (item.quality < 50) {
+            incrementQuality(item);
+
+            if (item.sellIn < 10) {
                 if (item.quality < 50) {
                     incrementQuality(item);
                 }
             }
-        } else if (isBackstagePasses(item)) {
-            if (item.quality < 50) {
-                incrementQuality(item);
 
-                if (item.sellIn < 10) {
-                    if (item.quality < 50) {
-                        incrementQuality(item);
-                    }
+            if (item.sellIn < 5) {
+                if (item.quality < 50) {
+                    incrementQuality(item);
                 }
-
-                if (item.sellIn < 5) {
-                    if (item.quality < 50) {
-                        incrementQuality(item);
-                    }
-                }
-
-                if (item.sellIn < 0) {
-                    item.quality = 0;
-                }
-            }
-        } else {
-            if (item.quality > 0) {
-                decreaseQuality(item);
             }
 
             if (item.sellIn < 0) {
-                if (item.quality > 0) {
-                    decreaseQuality(item);
-                }
+                item.quality = 0;
+            }
+        }
+    }
+
+    private void updateAgedBrieQuality(Item item) {
+        if (item.quality < 50) {
+            incrementQuality(item);
+        }
+        if (item.sellIn < 0) {
+            if (item.quality < 50) {
+                incrementQuality(item);
             }
         }
     }
