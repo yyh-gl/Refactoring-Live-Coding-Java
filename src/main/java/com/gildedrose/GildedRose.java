@@ -17,19 +17,23 @@ class GildedRose {
         if (isSulfuras(item)) {
             return;
         }
+
+        decreaseSellIn(item); // SellIn値の変更はここだけ
+
+        // ここ以降はQuality値の変更だけ
         
         if (isAgedBrie(item) || isBackstagePasses(item)) {
             if (item.quality < 50) {
                 incrementQuality(item);
 
                 if (isBackstagePasses(item)) {
-                    if (item.sellIn < 11) {
+                    if (item.sellIn < 10) {
                         if (item.quality < 50) {
                             incrementQuality(item);
                         }
                     }
 
-                    if (item.sellIn < 6) {
+                    if (item.sellIn < 5) {
                         if (item.quality < 50) {
                             incrementQuality(item);
                         }
@@ -41,8 +45,6 @@ class GildedRose {
                     decreaseQuality(item);
             }
         }
-
-        decreaseSellIn(item);
 
         if (item.sellIn < 0) {
             if (isAgedBrie(item)) {
