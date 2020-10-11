@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class NormalItem implements GildedRoseItem {
+public class NormalItem implements GildedRoseItemInterface {
     @Override
     public void updateSellIn(Item item) {
         item.sellIn = item.sellIn - 1;
