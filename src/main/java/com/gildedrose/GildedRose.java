@@ -23,8 +23,9 @@ class GildedRose {
             agedBrieItem.updateSellIn(item);
             agedBrieItem.updateQuality(item);
         } else if (isBackstagePasses(item)) {
-            decreaseSellIn(item);
-            updateBackstagePassesQuality(item);
+            GildedRoseItem backstagePassesItem = new BackstagePassesItem();
+            backstagePassesItem.updateSellIn(item);
+            backstagePassesItem.updateQuality(item);
         } else {
             decreaseSellIn(item);
             updateNormalQuality(item);
@@ -43,38 +44,12 @@ class GildedRose {
         }
     }
 
-    private void updateBackstagePassesQuality(Item item) {
-        if (item.quality < 50) {
-            incrementQuality(item);
-
-            if (item.sellIn < 10) {
-                if (item.quality < 50) {
-                    incrementQuality(item);
-                }
-            }
-
-            if (item.sellIn < 5) {
-                if (item.quality < 50) {
-                    incrementQuality(item);
-                }
-            }
-
-            if (item.sellIn < 0) {
-                item.quality = 0;
-            }
-        }
-    }
-
     private void decreaseSellIn(Item item) {
         item.sellIn = item.sellIn - 1;
     }
 
     private void decreaseQuality(Item item) {
         item.quality = item.quality - 1;
-    }
-
-    private void incrementQuality(Item item) {
-        item.quality = item.quality + 1;
     }
 
     private boolean isSulfuras(Item item) {
